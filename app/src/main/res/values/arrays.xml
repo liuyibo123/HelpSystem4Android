@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cat">
+        <item>取快递</item>
+        <item>带饭</item>
+        <item>帮买东西</item>
+    </string-array>
+</resources>

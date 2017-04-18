@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightsalmon">
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="内容"
+            android:id="@+id/content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="选择种类"
+                android:layout_weight="1"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/cat"
+                android:layout_gravity="top|left"
+                android:id="@+id/spinner">
+            </Spinner>
+        </LinearLayout>
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="要到哪里去帮忙"
+            android:id="@+id/destination_from"/>
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="最后去哪里找您"
+            android:id="@+id/destination_to"/>
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="悬赏金额"
+            android:id="@+id/tip"/>
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:inputType="datetime"
+            android:id="@+id/deadline"
+            android:hint="截至时间">
+        </android.support.design.widget.TextInputEditText>
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="需要几个人"
+            android:id="@+id/need_person" />
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/makesure"
+                android:text="确定"
+                android:layout_weight="1"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/cancel"
+                android:text="取消"
+                android:layout_weight="1"/>
+        </LinearLayout>
+</LinearLayout>
