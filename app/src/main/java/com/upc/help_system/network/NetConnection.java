@@ -1,8 +1,6 @@
-package com.upc.help_system.utils.network;
+package com.upc.help_system.network;
 
 import com.upc.help_system.model.HelpInfo;
-
-import okhttp3.RequestBody;
 
 /**
  * Created by Administrator on 2017/4/6.

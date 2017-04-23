@@ -1,4 +1,4 @@
-package com.upc.help_system.activity;
+package com.upc.help_system.view.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,12 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.upc.help_system.R;
-import com.upc.help_system.model.HelpInfo;
-import com.upc.help_system.utils.network.MyRetrofit;
-import com.upc.help_system.utils.network.OnGetResponseListener;
-import com.upc.help_system.utils.network.RequestServices;
-
-import java.util.List;
+import com.upc.help_system.network.RequestServices;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

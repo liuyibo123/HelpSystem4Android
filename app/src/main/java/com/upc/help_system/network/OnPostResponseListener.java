@@ -1,8 +1,4 @@
-package com.upc.help_system.utils.network;
-
-import com.upc.help_system.model.HelpInfo;
-
-import java.util.List;
+package com.upc.help_system.network;
 
 import retrofit2.Call;
 import retrofit2.Response;

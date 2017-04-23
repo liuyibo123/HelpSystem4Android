@@ -1,4 +1,4 @@
-package com.upc.help_system.activity;
+package com.upc.help_system.view.activity;
 
 import android.app.Activity;
 import android.content.Intent;

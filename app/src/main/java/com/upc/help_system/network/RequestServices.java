@@ -1,4 +1,4 @@
-package com.upc.help_system.utils.network;
+package com.upc.help_system.network;
 
 import com.upc.help_system.model.HelpInfo;
 

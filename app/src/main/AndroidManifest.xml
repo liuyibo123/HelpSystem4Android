@@ -22,13 +22,13 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <meta-data android:name="com.baidu.lbsapi.API_KEY"
             android:value="VP0qQ12Btzw5nWFQ50Itj2Zj1CGdIV3x"/>
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".view.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.RegisterActivity"/>
+        <activity android:name=".view.activity.RegisterActivity"/>
         </application>
 </manifest>
