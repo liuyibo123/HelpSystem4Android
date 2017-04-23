@@ -14,15 +14,14 @@
             android:background="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/back"
-            />
+            android:src="@drawable/back" />
     </android.support.v7.widget.Toolbar>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textAlignment="center"
-        android:textSize="28dp"
+        android:textSize="28sp"
         android:textColor="@color/grey"
         android:layout_margin="20dp"
         android:text="注  册"/>

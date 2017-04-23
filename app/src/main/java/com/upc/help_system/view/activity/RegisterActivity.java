@@ -1,4 +1,4 @@
-package com.upc.help_system.activity;
+package com.upc.help_system.view.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,12 +11,6 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.upc.help_system.R;
-import com.upc.help_system.model.HelpInfo;
-import com.upc.help_system.utils.network.MyRetrofit;
-import com.upc.help_system.utils.network.OnGetResponseListener;
-import com.upc.help_system.utils.network.RequestServices;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,25 +58,6 @@ public class RegisterActivity extends Activity {
                 identifyBtn.setEnabled(true);
                 break;
             case R.id.identify_btn:
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://112.74.209.39:8080/")
-                        .addConverterFactory(ScalarsConverterFactory.create())
-                        .build();
-                RequestServices requestServices = retrofit.create(RequestServices.class);
-                Call<String> call = requestServices.getStr();
-                call.enqueue(new Callback<String>() {
-                    @Override
-                    public void onResponse(Call<String> call, Response<String> response) {
-                        Log.d("tag",response.body());
-                    }
-
-                    @Override
-                    public void onFailure(Call<String> call, Throwable throwable) {
-                        Log.d("tag","error:"+throwable.getMessage());
-                    }
-                });
-
-                Snackbar.make(getWindow().getDecorView(),"注册完成",Snackbar.LENGTH_SHORT).show();
                 break;
         }
     }
