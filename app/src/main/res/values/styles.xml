@@ -17,11 +17,7 @@
         <item name="android:backgroundDimEnabled">true</item> <!--背景是否模糊显示-->
     </style>
 
-    <!-- dialog底部弹出菜单动画 -->
-    <style name="bottom_menu_animation" parent="android:Animation">
-        <item name="@android:windowEnterAnimation">@anim/bottom_menu_enter</item>
-        <item name="@android:windowExitAnimation">@anim/bottom_menu_exit</item>
-    </style>
+
     <style name="button_custom" parent="android:Widget.Button">
         <item name="android:background">@drawable/shape</item>
     </style>

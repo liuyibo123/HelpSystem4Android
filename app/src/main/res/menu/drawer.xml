@@ -10,7 +10,7 @@
             <item
                 android:id="@+id/navigation_item_blog"
                 android:icon="@drawable/add"
-                android:title="我的博客" />
+                android:title="注册" />
             <item
                 android:id="@+id/navigation_item_about"
                 android:icon="@drawable/add"

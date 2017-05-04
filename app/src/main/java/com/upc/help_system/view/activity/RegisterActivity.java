@@ -11,15 +11,12 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.upc.help_system.R;
+import com.upc.help_system.model.UserModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
+
 
 /**
  * Created by Administrator on 2017/4/8.
@@ -58,7 +55,9 @@ public class RegisterActivity extends Activity {
                 identifyBtn.setEnabled(true);
                 break;
             case R.id.identify_btn:
-                break;
+                UserModel usermodel = new UserModel();
+                usermodel.setUser(usermodel.new User(0,phoneNumber.toString(),password.toString(),phoneNumber.toString()));
+                usermodel.add(usermodel.getUser());
         }
     }
 }
