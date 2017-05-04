@@ -33,6 +33,8 @@ import butterknife.OnClick;
 import cn.jpush.android.api.JPushInterface;
 
 
+
+
 public class MainActivity extends FragmentActivity {
 
     @BindView(R.id.myorder_btn)
@@ -86,7 +88,7 @@ public class MainActivity extends FragmentActivity {
         filter.addAction(MESSAGE_RECEIVED_ACTION);
         registerReceiver(mMessageReceiver, filter);
     }
-    public class MessageReceiver extends BroadcastReceiver {
+    public static class MessageReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {

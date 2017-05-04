@@ -15,6 +15,7 @@
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
     <permission
         android:name="com.upc.help_system.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
@@ -43,6 +44,7 @@
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/help"
@@ -50,18 +52,31 @@
         android:supportsRtl="true"
         tools:replace="android:icon, android:theme"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+
         <meta-data android:name="com.baidu.lbsapi.API_KEY"
             android:value="VP0qQ12Btzw5nWFQ50Itj2Zj1CGdIV3x"/>
+
+
+    <!--    <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="3YdaWzwbLDHMDCPDEy0NFMCXkpVCdzch" />-->
         <activity android:name=".view.activity.MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".view.activity.RegisterActivity"/>
         <activity android:name=".view.activity.PubActivity"
-            android:theme="@style/Theme.AppCompat.Light"/>
+            android:theme="@style/AppTheme"/>
         <receiver android:name=".view.activity.MainActivity$MessageReceiver"/>
+
+
+        <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote">
+        </service>
+
         </application>
 </manifest>
