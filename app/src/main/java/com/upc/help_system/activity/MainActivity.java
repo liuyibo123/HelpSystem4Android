@@ -11,13 +11,25 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.baidu.mapapi.map.BaiduMap;
+import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.MyLocationData;
 import com.facebook.stetho.Stetho;
 import com.upc.help_system.R;
+//import com.upc.help_system.model.LocationClient;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.baidu.location.BDNotifyListener;//假如用到位置提醒功能，需要import该类
+import com.baidu.location.Poi;
+
+import com.upc.help_system.model.NotifyLister;
 
 public class MainActivity extends FragmentActivity {
 
@@ -29,11 +41,13 @@ public class MainActivity extends FragmentActivity {
     ImageButton communityBtn;
     @BindView(R.id.love_btn)
     ImageButton loveBtn;
+
     @BindView(R.id.navigation_view)
     NavigationView navigationView;
 
     @BindView(R.id.fab)
     FloatingActionButton fab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +55,8 @@ public class MainActivity extends FragmentActivity {
         Stetho.initializeWithDefaults(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +65,5 @@ public class MainActivity extends FragmentActivity {
         });
 
     }
-
 }
 

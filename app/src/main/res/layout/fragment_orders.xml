@@ -5,13 +5,17 @@
     tools:context="com.upc.help_system.fragment.OrdersFragment">
     <!-- TODO: Update blank fragment layout -->
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="377dp"
-        android:layout_gravity="bottom"></android.support.v7.widget.RecyclerView>
+        android:layout_gravity="bottom">
+
+    </android.support.v7.widget.RecyclerView>
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.baidu.mapapi.map.MapView
+            android:id="@+id/bmapview"
             android:layout_width="match_parent"
             android:layout_height="193dp"
             ></com.baidu.mapapi.map.MapView>
