@@ -44,25 +44,15 @@ public class PubActivity extends FragmentActivity {
                 String s = tab.getText().toString();
                 presenter.OnTabClicked(s);
                 }
-
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
+                presenter.OnTabClicked("取快递");
             }
-
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
-
-
         });
 
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
 
     @Subscribe

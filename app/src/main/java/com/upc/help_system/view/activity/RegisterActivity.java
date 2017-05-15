@@ -52,7 +52,9 @@ public class RegisterActivity extends Activity {
                 identifyBtn.setEnabled(true);
                 break;
             case R.id.identify_btn:
-
+                //TODO 书写注册的确定
+                //TODO 确定之后跳转到主界面
+                break;
         }
     }
 }

@@ -43,16 +43,33 @@ public class PubPresenterImpl implements PubPresenter {
     Express express_temp = new Express();
     public PubPresenterImpl(PubActivity view) {
         this.view = view;
-        showExpress();
     }
     @Override
     public void OnTabClicked(String s) {
         switch (s){
             case "取快递":
                 showExpress();
+            case "带饭":
+                showTakeFood();
+
         }
     }
 
+    public void showTakeFood() {
+        //TODO 写填写带饭的内容
+    }
+
+    public void showHomeWork() {
+        //TODO 写作业帮的内容
+    }
+
+    public void showBuy() {
+        //TODO 写帮购物的内容
+    }
+
+    public void showOther() {
+        //TODO 写其他的东西
+    }
     @Override
     public void onExpressFirstFinsh() {
         Retrofit retrofit = new Retrofit.Builder()

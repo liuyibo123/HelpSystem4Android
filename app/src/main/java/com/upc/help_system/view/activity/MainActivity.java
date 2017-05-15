@@ -21,6 +21,8 @@ import com.baidu.mapapi.SDKInitializer;
 import com.facebook.stetho.Stetho;
 import com.upc.help_system.R;
 import com.upc.help_system.events.NewOrderEvent;
+import com.upc.help_system.presenter.MainPresenter;
+import com.upc.help_system.presenter.MainPresenterImpl;
 
 
 import org.greenrobot.eventbus.EventBus;
@@ -47,54 +49,37 @@ public class MainActivity extends FragmentActivity {
     ImageButton loveBtn;
     @BindView(R.id.navigation_view)
     NavigationView navigationView;
-
     @BindView(R.id.fab)
     FloatingActionButton fab;
+    MainPresenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SDKInitializer.initialize(getApplicationContext());
-        JPushInterface.setDebugMode(true);
-        JPushInterface.init(this);
-        Stetho.initializeWithDefaults(this);
+        init();
         setContentView(R.layout.activity_main);
-        registerMessageReciver();
         ButterKnife.bind(this);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,PubActivity.class));
-            }
-        });
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
-                return true;
+                startActivity(new Intent(MainActivity.this, PubActivity.class));
             }
         });
 
     }
-    private MessageReceiver mMessageReceiver;
-    public static final String MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION";
-    public static final String KEY_TITLE = "title";
-    public static final String KEY_MESSAGE = "message";
-    public static final String KEY_EXTRAS = "extras";
-    private void registerMessageReciver() {
-        mMessageReceiver = new MessageReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-        filter.addAction(MESSAGE_RECEIVED_ACTION);
-        registerReceiver(mMessageReceiver, filter);
+
+    void init() {
+        SDKInitializer.initialize(getApplicationContext());
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
+        Stetho.initializeWithDefaults(this);
+        presenter = new MainPresenterImpl();
     }
-    public static class MessageReceiver extends BroadcastReceiver {
 
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            int id=intent.getIntExtra("id",1);
-            EventBus.getDefault().post(new NewOrderEvent(id));
-            }
-        }
-
+    @Subscribe
+    public void onReceiveNewOrder(NewOrderEvent event) {
+        presenter.onNewOrder();
+    }
 }
+
+
 
