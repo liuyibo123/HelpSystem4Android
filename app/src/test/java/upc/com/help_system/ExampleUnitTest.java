@@ -4,6 +4,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.LinearLayout;
 
+import com.upc.help_system.utils.Container;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -16,6 +18,6 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+        System.out.println(Container.volume.values()[0]);
     }
 }

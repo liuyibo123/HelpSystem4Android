@@ -21,7 +21,7 @@ import com.baidu.mapapi.SDKInitializer;
 import com.facebook.stetho.Stetho;
 import com.upc.help_system.R;
 import com.upc.help_system.events.NewOrderEvent;
-import com.upc.help_system.utils.network.httpconimpl.RetrofitUtil;
+
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -57,7 +57,6 @@ public class MainActivity extends FragmentActivity {
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
         Stetho.initializeWithDefaults(this);
-        EventBus.getDefault().register(this);
         setContentView(R.layout.activity_main);
         registerMessageReciver();
         ButterKnife.bind(this);

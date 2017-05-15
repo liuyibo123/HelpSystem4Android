@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent">
+
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -17,6 +19,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
+
             android:id="@+id/express_company"
             />
     </LinearLayout>
@@ -71,6 +74,7 @@
             android:id="@+id/phone_number"
             />
     </LinearLayout>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -80,42 +84,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="快件描述"/>
-        <EditText
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:id="@+id/express_description"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="展示内容"/>
-        <EditText
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:hint="帮我取个快递好吗？大侠"
-            android:layout_height="wrap_content"
-            android:id="@+id/content"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="送到哪里"/>
+            android:text="送到哪里" />
         <EditText
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -132,27 +101,64 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="小费"/>
+            android:text="小费" />
         <EditText
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="2元"
+            android:text="2"
             android:layout_height="wrap_content"
             android:id="@+id/tip"
             />
     </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="快件大小" />
 
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:entries="@array/volume"
+            android:layout_height="wrap_content"
+            android:id="@+id/volume"></Spinner>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="快件重量" />
+
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:id="@+id/weight"
+            android:entries="@array/weight"
+            android:layout_height="wrap_content"></Spinner>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:text="确定"
             android:layout_height="wrap_content"
             android:id="@+id/btn_makesure"/>
         <Button
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:text="取消"
             android:layout_height="match_parent"
             android:id="@+id/btn_cancel"/>
     </LinearLayout>

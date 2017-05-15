@@ -3,15 +3,12 @@ package com.upc.help_system.view.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.upc.help_system.R;
-import com.upc.help_system.model.UserModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,9 +52,7 @@ public class RegisterActivity extends Activity {
                 identifyBtn.setEnabled(true);
                 break;
             case R.id.identify_btn:
-                UserModel usermodel = new UserModel();
-                usermodel.setUser(usermodel.new User(0,phoneNumber.toString(),password.toString(),phoneNumber.toString()));
-                usermodel.add(usermodel.getUser());
+
         }
     }
 }

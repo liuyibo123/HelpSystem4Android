@@ -9,8 +9,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.upc.help_system.R;
+import com.upc.help_system.events.FirstCallFinsh;
 import com.upc.help_system.presenter.PubPresenter;
 import com.upc.help_system.presenter.PubPresenterImpl;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +36,7 @@ public class PubActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pub);
         ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
         presenter = new PubPresenterImpl(this);
         tabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -55,4 +60,13 @@ public class PubActivity extends FragmentActivity {
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Subscribe
+    public void onExpressFirstFinsh(FirstCallFinsh firstCallFinsh) {
+        presenter.onExpressFirstFinsh();
+    }
 }

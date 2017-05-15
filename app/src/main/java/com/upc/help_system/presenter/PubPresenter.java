@@ -7,5 +7,7 @@ import com.upc.help_system.view.activity.MainActivity;
  */
 
 public interface PubPresenter {
-    public void OnTabClicked(String s);
+    void OnTabClicked(String s);
+
+    void onExpressFirstFinsh();
 }
