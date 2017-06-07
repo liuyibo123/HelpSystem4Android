@@ -1,11 +1,13 @@
 package com.upc.help_system.model;
 
 
+import java.io.Serializable;
+
 /**
  * Created by Liuyibo on 2017/5/9.
  */
 
-public class Express {
+public class Express implements Serializable {
 
     private int id;
     private String company;

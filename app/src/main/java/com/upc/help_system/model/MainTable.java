@@ -11,9 +11,9 @@ public class MainTable {
 
     private int id;
     private String content;
-    private int pub_person;
+    private String pub_person;
     private int catagory;
-    private int accept_person;
+    private String accept_person;
     private String pub_time;
     private String accept_time;
     private int state;
@@ -37,11 +37,11 @@ public class MainTable {
         this.content = content;
     }
 
-    public int getPub_person() {
+    public String getPub_person() {
         return pub_person;
     }
 
-    public void setPub_person(int pub_person) {
+    public void setPub_person(String pub_person) {
         this.pub_person = pub_person;
     }
 
@@ -53,11 +53,11 @@ public class MainTable {
         this.catagory = catagory;
     }
 
-    public int getAccept_person() {
+    public String getAccept_person() {
         return accept_person;
     }
 
-    public void setAccept_person(int accept_person) {
+    public void setAccept_person(String accept_person) {
         this.accept_person = accept_person;
     }
 

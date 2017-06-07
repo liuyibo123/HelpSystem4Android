@@ -8,6 +8,4 @@ import com.upc.help_system.view.activity.MainActivity;
 
 public interface PubPresenter {
     void OnTabClicked(String s);
-
-    void onExpressFirstFinsh();
 }

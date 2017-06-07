@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Material.Light.Panel.Light" parent="android:Theme.Material.Light">
+        <item name="android:colorForeground">@color/colorPrimaryLight</item>
+        <item name="android:colorBackground">@android:color/background_light</item>
+        <item name="android:textColorPrimary">@color/primary_text</item>
+    </style>
+
+    <style name="TextViewTheme" parent="android:Theme.Material.Light" />
+</resources>

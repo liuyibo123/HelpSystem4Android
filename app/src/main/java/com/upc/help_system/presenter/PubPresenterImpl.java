@@ -1,9 +1,11 @@
 package com.upc.help_system.presenter;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -14,19 +16,18 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.upc.help_system.BuildConfig;
 import com.upc.help_system.R;
-import com.upc.help_system.events.FirstCallFinsh;
 import com.upc.help_system.model.Express;
 import com.upc.help_system.model.MainTable;
 import com.upc.help_system.utils.Container;
+import com.upc.help_system.utils.MyGson;
+import com.upc.help_system.utils.MyLoction;
 import com.upc.help_system.utils.TimeUtil;
+import com.upc.help_system.utils.network.ConConfig;
 import com.upc.help_system.utils.network.MyResponse;
 import com.upc.help_system.utils.network.RequestService;
-import com.upc.help_system.view.activity.MainActivity;
 import com.upc.help_system.view.activity.PubActivity;
 
-import org.greenrobot.eventbus.EventBus;
-
-import java.sql.Timestamp;
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,8 +42,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class PubPresenterImpl implements PubPresenter {
     PubActivity view;
     Express express_temp = new Express();
+    String username;
+    String phone;
     public PubPresenterImpl(PubActivity view) {
         this.view = view;
+        SharedPreferences sharedPreferences = view.getSharedPreferences("user", Context.MODE_PRIVATE);
+        username = sharedPreferences.getString("name", "");
+        phone = sharedPreferences.getString("phone", "");
+        showExpress();
     }
     @Override
     public void OnTabClicked(String s) {
@@ -54,9 +61,19 @@ public class PubPresenterImpl implements PubPresenter {
 
         }
     }
-
     public void showTakeFood() {
-        //TODO 写填写带饭的内容
+        View v = view.getLayoutInflater().inflate(R.layout.fragment_food, null);
+        view.framePub.removeAllViews();
+        view.framePub.addView(v);
+        EditText restaurant = (EditText) v.findViewById(R.id.restaurant);
+        EditText food = (EditText) v.findViewById(R.id.food);
+        EditText time = (EditText) v.findViewById(R.id.time);
+        EditText acceptloc = (EditText) v.findViewById(R.id.acceptloc);
+        EditText tip = (EditText) v.findViewById(R.id.tip);
+        EditText phone_et = (EditText) v.findViewById(R.id.phone);
+        Button makesure = (Button) v.findViewById(R.id.makesure);
+        Button cancel = (Button) v.findViewById(R.id.cancel);
+        phone_et.setText(phone);
     }
 
     public void showHomeWork() {
@@ -70,30 +87,7 @@ public class PubPresenterImpl implements PubPresenter {
     public void showOther() {
         //TODO 写其他的东西
     }
-    @Override
-    public void onExpressFirstFinsh() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://180.201.158.155:8080")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        RequestService service = retrofit.create(RequestService.class);
 
-
-        Call<Void> call2 = service.addExpress(express_temp);
-
-        call2.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (BuildConfig.DEBUG) Log.d("PubPresenterImpl", "success");
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                if (BuildConfig.DEBUG) Log.d("PubPresenterImpl", "t:" + t);
-                Toast.makeText(view, "连接不到服务器", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
     public void showExpress() {
         View v = view.getLayoutInflater().inflate(R.layout.fragment_express, null);
@@ -107,7 +101,9 @@ public class PubPresenterImpl implements PubPresenter {
         express_company.setAdapter(adapter);
         EditText take_number = (EditText) view.findViewById(R.id.take_number);
         EditText name = (EditText) view.findViewById(R.id.name);
-        EditText phone_number = (EditText) view.findViewById(R.id.phone_number);
+        name.setText(username);
+        EditText phone_number = (EditText) view.findViewById(R.id.usr_name);
+        phone_number.setText(phone);
         EditText destination_to = (EditText) view.findViewById(R.id.destination_to);
         EditText tip = (EditText) view.findViewById(R.id.tip);
         Spinner volume = (Spinner) view.findViewById(R.id.volume);
@@ -125,20 +121,29 @@ public class PubPresenterImpl implements PubPresenter {
                 table.setCatagory(Container.EXPRESS);
                 table.setHelp_loc(destination_to.getText().toString());
                 //TODO （1）百度地图自动获取位置
-                table.setPub_loc("暂无法自动获取");
+                String loction = view.getSharedPreferences("location", Context.MODE_PRIVATE).getString("location", "获取位置失败");
+                MyLoction myLoction = MyGson.fromJson(loction, MyLoction.class);
+                table.setPub_loc(myLoction.getAddr());
                 //TODO　(2) 用户类
-                table.setPub_person(0);
+                table.setPub_person(username);
                 table.setPub_time(TimeUtil.getCurrentTime());
                 Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://180.201.158.155:8080")
+                        .baseUrl(ConConfig.url)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 RequestService service = retrofit.create(RequestService.class);
                 Call<MyResponse> call = service.addMainTable(table);
+                Call<Void> call2 = service.addExpress(express_temp);
                 Log.d("PubPresenterImpl", "table:" + gson.toJson(table));
-                call.enqueue(new Callback<MyResponse>() {
+                new Thread(new Runnable() {
                     @Override
-                    public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                    public void run() {
+                        Response<MyResponse> response = null;
+                        try {
+                            response = call.execute();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         express_temp.setId(response.body().getValue());
                         express_temp.setCompany(express_company.getText().toString());
                         express_temp.setName(name.getText().toString());
@@ -146,23 +151,30 @@ public class PubPresenterImpl implements PubPresenter {
                         express_temp.setTake_number(take_number.getText().toString());
                         express_temp.setVolume(volume.getCount());
                         express_temp.setWeight(weight.getCount());
-                        EventBus.getDefault().post(new FirstCallFinsh());
-                    }
 
-                    @Override
-                    public void onFailure(Call<MyResponse> call, Throwable t) {
-                        Log.d("PubPresenterImpl", "t:" + t);
-                        Toast.makeText(view, "连接不到服务器", Toast.LENGTH_SHORT).show();
+
+                        call2.enqueue(new Callback<Void>() {
+                            @Override
+                            public void onResponse(Call<Void> call, Response<Void> response) {
+                                if (BuildConfig.DEBUG) Log.d("PubPresenterImpl", "success");
+                                Snackbar.make(view.getWindow().getDecorView(), "发布成功", Snackbar.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onFailure(Call<Void> call, Throwable t) {
+                                if (BuildConfig.DEBUG) Log.d("PubPresenterImpl", "t:" + t);
+                                Toast.makeText(view, "连接不到服务器", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
-                });
+                }).start();
             }
         });
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO  销毁视图
+                view.finish();
             }
         });
     }
-
-}
+    }

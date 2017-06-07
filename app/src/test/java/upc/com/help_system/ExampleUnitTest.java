@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.LinearLayout;
 
 import com.upc.help_system.utils.Container;
+import com.upc.help_system.view.activity.PubActivity;
 
 import org.junit.Test;
 
@@ -19,5 +20,10 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
         System.out.println(Container.volume.values()[0]);
+    }
+
+    @Test
+    public void testadd() throws Exception {
+
     }
 }

@@ -2,7 +2,10 @@ package upc.com.help_system;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
+import android.support.test.espresso.core.deps.guava.util.concurrent.ExecutionError;
 import android.support.test.runner.AndroidJUnit4;
+
+import com.upc.help_system.view.activity.PubActivity;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +23,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
-
         assertEquals("upc.com.help_system", appContext.getPackageName());
     }
 }

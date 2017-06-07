@@ -6,4 +6,6 @@ package com.upc.help_system.presenter;
 
 public interface MainPresenter {
     void onNewOrder();
+
+    void showOrders();
 }
