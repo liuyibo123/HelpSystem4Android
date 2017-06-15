@@ -53,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     InputMethodManager imm;
     String username_string;
     String password_string;
+    String nickname_string;
     @BindView(R.id.back_btn)
     ImageButton backBtn;
 
@@ -110,7 +111,10 @@ public class LoginActivity extends AppCompatActivity {
                                 User user1 = response.body();
                                 SharedPreferences preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = preferences.edit();
-                                editor.putString("name", username_string);
+                                String nickname = user1.getNickname();
+                                nickname_string = nickname;
+                                editor.putString("name", name);
+                                editor.putString("nickname", nickname_string);
                                 editor.putString("password", password_string);
                                 editor.putString("sex", user1.getSex());
                                 editor.putString("phone", user1.getPhonenumber());
@@ -128,9 +132,12 @@ public class LoginActivity extends AppCompatActivity {
 
                             }
                         });
-
-
-                        Snackbar.make(getWindow().getDecorView(), "登录成功", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(getWindow().getDecorView(), "登录成功", Snackbar.LENGTH_SHORT).setAction("确定", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                LoginActivity.this.finish();
+                            }
+                        }).show();
                         break;
                     case 2:
                         Toast.makeText(LoginActivity.this, "用户名不存在", Toast.LENGTH_SHORT).show();

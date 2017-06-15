@@ -14,6 +14,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -21,11 +22,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baidu.mapapi.map.MapView;
-import com.upc.help_system.R;
 import com.upc.help_system.utils.network.ConConfig;
 import com.upc.help_system.utils.network.RequestService;
 import com.upc.help_system.utils.widgetutil.SnackbarUtil;
-
+import com.upc.help_system.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -150,6 +150,9 @@ public class DetailActivity extends Activity {
             case R.id.contact:
                 break;
             case R.id.accept:
+                if (username == null || username.equals("")) {
+                    Snackbar.make(constraintlayout, "接收订单前需要登录", Snackbar.LENGTH_LONG).show();
+                }
                 if (pub_person.equals(username)) {
                     Snackbar.make(constraintlayout, "不能接收自己的订单", Snackbar.LENGTH_LONG).show();
                 } else if (accept_person != null) {
@@ -169,6 +172,8 @@ public class DetailActivity extends Activity {
                 .build();
         RequestService requestService = retrofit.create(RequestService.class);
         Call<String> call = requestService.acceptOrder(id, username);
+        Log.d("DetailActivity", "id:" + id);
+        Log.d("DetailActivity", username);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {

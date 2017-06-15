@@ -99,6 +99,7 @@ public class PerfectInformation extends Activity {
         user.setPassword(password);
         user.setSex(sex);
         user.setPhonenumber(phonenubmer);
+        user.setNickname(username);
         Call<String> call = requestService.register(user);
         call.enqueue(new Callback<String>() {
             @Override
@@ -113,6 +114,7 @@ public class PerfectInformation extends Activity {
                         editor.putString("password", password_string);
                         editor.putString("sex", sex_string);
                         editor.putString("phone", phone_number_string);
+                        editor.putString("nickname", username_string);
                         editor.commit();
                         JPushInterface.setAlias(getApplicationContext(), username_string, new TagAliasCallback() {
                             @Override

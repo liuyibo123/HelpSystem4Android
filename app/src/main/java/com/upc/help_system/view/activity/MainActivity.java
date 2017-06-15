@@ -77,6 +77,7 @@ public class MainActivity extends FragmentActivity {
     TextView nickname;
     String username = null;
     String sex;
+    String nickname_string;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,11 +88,11 @@ public class MainActivity extends FragmentActivity {
         login = (Button) headerView.findViewById(R.id.login);
         img_btn = (ImageButton) headerView.findViewById(R.id.head_button);
         nickname = (TextView) headerView.findViewById(R.id.nickname);
-
         init();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (username == null || username.equals("")) {
                     Snackbar snackbar = SnackbarUtil.ShortSnackbar(drawerLayout, "发帖需要先登录", SnackbarUtil.Info).setActionTextColor(Color.RED).setAction("去登录", new View.OnClickListener() {
                         @Override
@@ -114,15 +115,31 @@ public class MainActivity extends FragmentActivity {
                         SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.clear().commit();
-                        username = null;
+                        clearString();
+                        presenter.clearString();
                         Toast.makeText(MainActivity.this, "注销成功", Toast.LENGTH_SHORT).show();
                         onResume();
+                        break;
+                    case R.id.navigation_item_change_password:
+                        SharedPreferences sharedPreferences1 = getSharedPreferences("user", MODE_PRIVATE);
+                        username = sharedPreferences1.getString("name", "");
+                        if (username == null || username.equals("")) {
+                            Toast.makeText(MainActivity.this, "请先登录", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                        startActivity(new Intent(MainActivity.this, ChangPasswordActivity.class));
                         break;
                 }
                 return true;
             }
         });
 
+    }
+
+    private void clearString() {
+        this.username = "";
+        sex = "";
+        nickname_string = "";
     }
 
     private void init() {
@@ -133,6 +150,7 @@ public class MainActivity extends FragmentActivity {
         JPushInterface.init(this);
         Stetho.initializeWithDefaults(this);
         presenter.showOrders();
+        help.toggle();
         BDLocationUtil.getCurrentLoc();
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,12 +162,18 @@ public class MainActivity extends FragmentActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (username != null) {
+                if (username != null && !username.equals("")) {
                     Toast.makeText(MainActivity.this, "需要更换新的账号请先注销登陆", Toast.LENGTH_SHORT).show();
                 } else {
                     Intent i = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(i);
                 }
+            }
+        });
+        img_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, UpdateUserActivity.class));
             }
         });
 
@@ -219,8 +243,16 @@ public class MainActivity extends FragmentActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.order:
+                if (username != null && !username.equals("")) {
+                    presenter.showMyOrders();
+                } else {
+                    Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
+                    order.toggle();
+                    help.toggle();
+                }
                 break;
             case R.id.help:
+                presenter.showOrders();
                 break;
             case R.id.community:
                 break;
@@ -233,12 +265,13 @@ public class MainActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
-        username = sharedPreferences.getString("name", null);
+        nickname_string = sharedPreferences.getString("nickname", "");
         sex = sharedPreferences.getString("sex", "");
-        if (username == null) {
+        username = sharedPreferences.getString("name", "");
+        if (nickname_string == null || nickname_string.equals("")) {
             nickname.setText("未登录");
         } else {
-            nickname.setText(username);
+            nickname.setText(nickname_string);
         }
         if (sex.equals("男")) {
             Resources resources = getApplicationContext().getResources();
@@ -249,8 +282,6 @@ public class MainActivity extends FragmentActivity {
             Resources resources = getApplicationContext().getResources();
             Drawable drawable = resources.getDrawable(R.drawable.ic_girl_48);
             img_btn.setBackground(drawable);
-
-
         }
 
     }

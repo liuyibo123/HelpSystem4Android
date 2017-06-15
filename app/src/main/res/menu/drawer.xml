@@ -15,9 +15,15 @@
                 android:id="@+id/navigation_item_about"
                 android:icon="@drawable/ic_id"
                 android:title="我的身份认证" />
+        </group>
+    <group android:checkableBehavior="single">
             <item
                 android:id="@+id/navigation_item_signout"
                 android:icon="@drawable/ic_reg"
                 android:title="注销登陆" />
+        <item
+            android:id="@+id/navigation_item_change_password"
+            android:icon="@drawable/ic_change_password"
+            android:title="更改密码" />
         </group>
 </menu>

@@ -9,6 +9,15 @@ public class User {
     private String password;
     private String phonenumber = "保密";
     private String sex = "保密";
+    private String nickname;
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 
     public String getName() {
         return name;

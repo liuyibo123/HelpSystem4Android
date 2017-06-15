@@ -45,4 +45,15 @@
     </style>
 
     <style name="button_a0"></style>
+
+    <style name="buttontran">
+        <item name="android:layout_width">63dp</item>
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_marginLeft">103dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:textSize">10sp</item>
+    </style>
 </resources>

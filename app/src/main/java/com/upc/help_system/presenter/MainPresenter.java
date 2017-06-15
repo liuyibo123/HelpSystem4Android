@@ -8,4 +8,8 @@ public interface MainPresenter {
     void onNewOrder();
 
     void showOrders();
+
+    void showMyOrders();
+
+    void clearString();
 }

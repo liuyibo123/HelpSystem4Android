@@ -3,15 +3,29 @@ package com.upc.help_system.view.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.SystemClock;
 import android.support.design.widget.TextInputEditText;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.tencent.connect.UserInfo;
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
 import com.upc.help_system.R;
+import com.upc.help_system.listener.BaseUiListener;
+import com.upc.help_system.utils.Util;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -44,6 +58,9 @@ public class RegisterActivity extends Activity {
     String cofirm_password_string;
     @BindView(R.id.back_btn)
     ImageButton backBtn;
+    public static String mAppid;
+    public static Tencent mTencent;
+    private UserInfo mInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +68,8 @@ public class RegisterActivity extends Activity {
         setContentView(R.layout.register);
         ButterKnife.bind(this);
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        mAppid = "101402889";
+        mTencent = Tencent.createInstance(mAppid, this);
     }
 
     @OnClick({R.id.identify_btn, R.id.qq_reg, R.id.phone_reg})
@@ -61,12 +80,99 @@ public class RegisterActivity extends Activity {
                 register();
                 break;
             case R.id.qq_reg:
+//                qqlogin();
                 break;
             case R.id.phone_reg:
                 break;
         }
     }
 
+    IUiListener loginListener = new BaseUiListener(this);
+
+    //    private void qqlogin() {
+//        if (!mTencent.isSessionValid()) {
+//            mTencent.login(this, "all", loginListener);
+//            isServerSideLogin = false;
+//            Log.d("SDKQQAgentPref", "FirstLaunch_SDK:" + SystemClock.elapsedRealtime());
+//        } else {
+//            if (isServerSideLogin) { // Server-Side 模式的登陆, 先退出，再进行SSO登陆
+//                mTencent.logout(this);
+//                mTencent.login(this, "all", loginListener);
+//                isServerSideLogin = false;
+//                Log.d("SDKQQAgentPref", "FirstLaunch_SDK:" + SystemClock.elapsedRealtime());
+//                return;
+//            }
+//            mTencent.logout(this);
+//            updateUserInfo();
+//            updateLoginButton();
+//        }
+//    }
+    Handler mHandler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what == 0) {
+                JSONObject response = (JSONObject) msg.obj;
+                if (response.has("nickname")) {
+
+                }
+            } else if (msg.what == 1) {
+                Bitmap bitmap = (Bitmap) msg.obj;
+
+            }
+        }
+
+    };
+
+    private void updateUserInfo() {
+        if (mTencent != null && mTencent.isSessionValid()) {
+            IUiListener listener = new IUiListener() {
+
+                @Override
+                public void onComplete(final Object response) {
+                    Message msg = new Message();
+                    msg.obj = response;
+                    msg.what = 0;
+                    mHandler.sendMessage(msg);
+                    new Thread() {
+
+                        @Override
+                        public void run() {
+                            JSONObject json = (JSONObject) response;
+                            if (json.has("figureurl")) {
+                                Bitmap bitmap = null;
+                                try {
+                                    bitmap = Util.getbitmap(json.getString("figureurl_qq_2"));
+                                } catch (JSONException e) {
+
+                                }
+                                Message msg = new Message();
+                                msg.obj = bitmap;
+                                msg.what = 1;
+                                mHandler.sendMessage(msg);
+                            }
+                        }
+
+                    }.start();
+                }
+
+                @Override
+                public void onError(UiError uiError) {
+
+                }
+
+                @Override
+                public void onCancel() {
+
+                }
+            };
+            mInfo = new UserInfo(this, mTencent.getQQToken());
+            mInfo.getUserInfo(listener);
+
+        } else {
+
+        }
+    }
     private void register() {
         username_string = username.getText().toString();
         password_string = password.getText().toString();

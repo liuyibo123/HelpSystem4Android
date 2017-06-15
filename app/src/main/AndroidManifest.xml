@@ -50,6 +50,19 @@
             android:value="3YdaWzwbLDHMDCPDEy0NFMCXkpVCdzch" />
         -->
         <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:noHistory="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent101402889" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".view.activity.MainActivity"
             android:exported="true"></activity>
         <activity android:name=".view.activity.RegisterActivity" />
@@ -121,6 +134,9 @@
                 android:value="com.upc.help_system.view.activity.MainActivity" />
         </activity>
         <activity android:name=".view.activity.PerfectInformation" />
+        <activity android:name=".view.activity.UpdateUserActivity" />
+        <activity android:name=".view.activity.ChangPasswordActivity" />
+
     </application>
 
 </manifest>

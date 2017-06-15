@@ -87,7 +87,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.NumberViewHo
             Log.d(TAG, MyGson.toJson(table));
             Log.d(TAG, "(listOrderType==null):" + (listOrderType == null));
             listOrderType.setText(Container.catagory.values()[table.getCatagory() - 1].toString());
-            testImg.setImageResource(R.drawable.head);
+            testImg.setImageResource(R.drawable.ic_boy_48);
             listOrderContent.setText(table.getContent());
             listOrderCharge.setText(String.valueOf(table.getTip()));
             listOrderDestination.setText(table.getHelp_loc());
