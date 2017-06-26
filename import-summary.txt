@@ -1,0 +1,48 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .gitignore
+* LICENSE
+* build.xml
+* ic_launcher-web.png
+* proguard-project.txt
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* AndroidManifest.xml => easeUI\src\main\AndroidManifest.xml
+* libs\arm64-v8a\libBaiduMapSDK_base_v3_6_1.so => easeUI\src\main\jniLibs\arm64-v8a\libBaiduMapSDK_base_v3_6_1.so
+* libs\arm64-v8a\libBaiduMapSDK_map_v3_6_1.so => easeUI\src\main\jniLibs\arm64-v8a\libBaiduMapSDK_map_v3_6_1.so
+* libs\arm64-v8a\libBaiduMapSDK_util_v3_6_1.so => easeUI\src\main\jniLibs\arm64-v8a\libBaiduMapSDK_util_v3_6_1.so
+* libs\arm64-v8a\liblocSDK6a.so => easeUI\src\main\jniLibs\arm64-v8a\liblocSDK6a.so
+* libs\armeabi\libBaiduMapSDK_base_v3_6_1.so => easeUI\src\main\jniLibs\armeabi\libBaiduMapSDK_base_v3_6_1.so
+* libs\armeabi\libBaiduMapSDK_map_v3_6_1.so => easeUI\src\main\jniLibs\armeabi\libBaiduMapSDK_map_v3_6_1.so
+* libs\armeabi\libBaiduMapSDK_util_v3_6_1.so => easeUI\src\main\jniLibs\armeabi\libBaiduMapSDK_util_v3_6_1.so
+* libs\armeabi\liblocSDK6a.so => easeUI\src\main\jniLibs\armeabi\liblocSDK6a.so
+* libs\BaiduLBS_Android.jar => easeUI\libs\BaiduLBS_Android.jar
+* libs\glide-3.6.1.jar => easeUI\libs\glide-3.6.1.jar
+* res\ => easeUI\src\main\res\
+* src\ => easeUI\src\main\java\
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)

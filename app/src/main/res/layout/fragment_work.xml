@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/backgroundGrey"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/subject"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
+        android:text="科  目"
+        android:textSize="15sp"
+        android:textColor="@color/secondary_text"
+        android:layout_marginLeft="24dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="32dp" />
+
+    <EditText
+        android:id="@+id/subject_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@color/primary_text"
+        app:layout_constraintLeft_toRightOf="@+id/subject"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
+        android:text="问  题"
+        android:textSize="15sp"
+        android:textColor="@color/secondary_text"
+        android:layout_marginLeft="24dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/subject" />
+
+    <EditText
+        android:id="@+id/question_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="22dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@color/primary_text"
+        app:layout_constraintLeft_toRightOf="@+id/question"
+        app:layout_constraintTop_toBottomOf="@+id/subject_content" />
+
+    <TextView
+        android:id="@+id/work_charge"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
+        android:text="酬  金"
+        android:textColor="@color/secondary_text"
+        android:textSize="15sp"
+        android:layout_marginLeft="24dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/question" />
+
+    <EditText
+        android:id="@+id/work_charge_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="number"
+        android:textColor="@color/primary_text"
+        app:layout_constraintLeft_toRightOf="@+id/work_charge"
+        app:layout_constraintTop_toBottomOf="@+id/question_content" />
+
+    <TextView
+        android:id="@+id/phone_number"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
+        android:text="手机号"
+        android:textColor="@color/secondary_text"
+        android:textSize="15sp"
+        android:layout_marginLeft="24dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="41dp"
+        app:layout_constraintTop_toBottomOf="@+id/work_charge" />
+
+    <EditText
+        android:id="@+id/phone_number_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="22dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@color/primary_text"
+        app:layout_constraintLeft_toRightOf="@+id/phone_number"
+        app:layout_constraintTop_toBottomOf="@+id/work_charge_content" />
+
+    <Button
+        android:id="@+id/btn_makesure"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="确定"
+        android:textColor="@color/backgroundGrey"
+        android:layout_marginLeft="58dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="60dp"
+        app:layout_constraintTop_toBottomOf="@+id/phone_number_content" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:textColor="@color/backgroundGrey"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="取消"
+        app:layout_constraintLeft_toRightOf="@+id/btn_makesure"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintTop_toBottomOf="@+id/phone_number_content" />
+</android.support.constraint.ConstraintLayout>

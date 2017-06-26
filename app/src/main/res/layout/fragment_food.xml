@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/backgroundGrey"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/canteen"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="32dp"
+        android:text="餐  厅"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
+        android:textColor="@color/secondary_text"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/canteen_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@color/primary_text"
+        app:layout_constraintLeft_toRightOf="@+id/canteen"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/food"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="40dp"
+        android:text="吃   啥 "
+        android:textColor="@color/secondary_text"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/canteen" />
+
+    <EditText
+        android:id="@+id/food_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@color/primary_text"
+        app:layout_constraintLeft_toRightOf="@+id/food"
+        app:layout_constraintTop_toBottomOf="@+id/canteen_content" />
+
+    <TextView
+        android:id="@+id/deadline"
+        android:layout_width="64dp"
+        android:layout_height="17dp"
+        android:text="截止时间"
+        android:textSize="15sp"
+        android:textColor="@color/secondary_text"
+        android:layout_marginLeft="24dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/phone_number_content" />
+
+    <EditText
+        android:id="@+id/deadline_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="time"
+        android:textColor="@color/primary_text"
+        app:layout_constraintLeft_toRightOf="@+id/deadline"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="37dp"
+        app:layout_constraintTop_toBottomOf="@+id/phone_number" />
+
+    <TextView
+        android:id="@+id/food_destination"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
+        android:text="送到哪"
+        android:textSize="15sp"
+        android:textColor="@color/secondary_text"
+        android:layout_marginLeft="24dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/food" />
+
+    <EditText
+        android:id="@+id/food_destination_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@color/primary_text"
+        app:layout_constraintLeft_toRightOf="@+id/food_destination"
+        app:layout_constraintTop_toBottomOf="@+id/food_content" />
+
+    <TextView
+        android:id="@+id/food_charge"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
+        android:text="酬  金"
+        android:textSize="15sp"
+        android:textColor="@color/secondary_text"
+        android:layout_marginLeft="24dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/food_destination" />
+
+    <TextView
+        android:id="@+id/phone_number"
+        android:layout_width="60dp"
+        android:layout_height="25dp"
+        android:text="手机号"
+        android:textColor="@color/secondary_text"
+        android:textSize="15sp"
+        android:layout_marginLeft="24dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/food_charge" />
+
+    <EditText
+        android:id="@+id/food_charge_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="22dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@color/primary_text"
+        app:layout_constraintLeft_toRightOf="@+id/food_charge"
+        app:layout_constraintTop_toBottomOf="@+id/food_destination_content" />
+
+    <EditText
+        android:id="@+id/phone_number_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@color/primary_text"
+        app:layout_constraintLeft_toRightOf="@+id/phone_number"
+        app:layout_constraintTop_toBottomOf="@+id/food_charge_content" />
+
+
+    <Button
+        android:id="@+id/btn_makesure"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="确定"
+        android:textColor="@color/backgroundGrey"
+        android:layout_marginLeft="84dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="44dp"
+        app:layout_constraintTop_toBottomOf="@+id/deadline_content" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="取消"
+        android:textColor="@color/backgroundGrey"
+        app:layout_constraintLeft_toRightOf="@+id/btn_makesure"
+        android:layout_marginLeft="53dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintTop_toBottomOf="@+id/deadline_content" />
+</android.support.constraint.ConstraintLayout>
